@@ -21,10 +21,10 @@ class Polygon {
 
         if (int && int.offset != 1 && int.offset != 0) {
           const point = new Point(int.x, int.y);
-          let aux = segs1[i].p1;
+          let aux = segs1[i].p2;
           segs1[i].p2 = point;
           segs1.splice(i + 1, 0, new Segment(point, aux));
-          aux = segs2[j].p1;
+          aux = segs2[j].p2;
           segs2[j].p2 = point;
           segs2.splice(j + 1, 0, new Segment(point, aux));
         }
