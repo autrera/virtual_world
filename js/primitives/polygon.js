@@ -15,6 +15,28 @@ class Polygon {
     }
   }
 
+  static union(polys) {
+    Polygon.multiBreak(polys);
+    const keptSegments = [];
+    for (let i = 0; i < polys.length; i++) {
+      for (const seg of polys[i].segments) {
+        let keep = true;
+        for (let j = 0; j < polys.length; j++) {
+          if (i != j) {
+            if (polys[j].containsSegment(seg)) {
+              keep = false;
+              break;
+            }
+          }
+        }
+        if (keep) {
+          keptSegments.push(seg);
+        }
+      }
+    }
+    return keptSegments;
+  }
+
   static break(poly1, poly2) {
     const segs1 = poly1.segments;
     const segs2 = poly2.segments;
@@ -38,6 +60,23 @@ class Polygon {
         }
       }
     }
+  }
+
+  containsSegment(seg) {
+    const midpoint = average(seg.p1, seg.p2);
+    return this.containsPoint(midpoint);
+  }
+
+  containsPoint(point) {
+    const outerPoint = new Point(-10000, -10000);
+    let intersectionCount = 0;
+    for (const seg of this.segments) {
+      const int = getIntersection(outerPoint, point, seg.p1, seg.p2);
+      if (int) {
+        intersectionCount++;
+      }
+    }
+    return intersectionCount % 2 == 1;
   }
 
   drawSegments(ctx) {
