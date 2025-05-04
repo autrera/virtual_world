@@ -12,7 +12,7 @@ class Viewport {
       end: new Point(0, 0),
       offset: new Point(0, 0),
       offset: new Point(0, 0),
-      active: false
+      active: false,
     };
 
     this.#addEventListeners();
@@ -30,8 +30,8 @@ class Viewport {
 
   getMouse(evt, subtractDragOffset = false) {
     const p = new Point(
-      (evt.offsetX - this.center.x) * this.zoom - this.offset.x, 
-      (evt.offsetY - this.center.y) * this.zoom - this.offset.y
+      (evt.offsetX - this.center.x) * this.zoom - this.offset.x,
+      (evt.offsetY - this.center.y) * this.zoom - this.offset.y,
     );
     return subtractDragOffset ? subtract(p, this.drag.offset) : p;
   }
@@ -41,14 +41,18 @@ class Viewport {
   }
 
   #addEventListeners() {
-    this.canvas.addEventListener("mousewheel", this.#handleMouseWheel.bind(this));
+    this.canvas.addEventListener(
+      "mousewheel",
+      this.#handleMouseWheel.bind(this),
+    );
     this.canvas.addEventListener("mousedown", this.#handleMouseDown.bind(this));
     this.canvas.addEventListener("mousemove", this.#handleMouseMove.bind(this));
     this.canvas.addEventListener("mouseup", this.#handleMouseUp.bind(this));
   }
 
   #handleMouseDown(evt) {
-    if (evt.button == 1) { // middle button
+    if (evt.button == 1) {
+      // middle button
       this.drag.start = this.getMouse(evt);
       this.drag.active = true;
     }
@@ -69,12 +73,13 @@ class Viewport {
         end: new Point(0, 0),
         offset: new Point(0, 0),
         offset: new Point(0, 0),
-        active: false
+        active: false,
       };
     }
   }
 
   #handleMouseWheel(evt) {
+    console.log("HIHO");
     const dir = Math.sign(evt.deltaY);
     const step = 0.1;
     this.zoom += dir * step;
