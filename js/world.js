@@ -47,6 +47,7 @@ class World {
     }
 
     const guides = Polygon.union(tmpEnvelopes.map((e) => e.poly));
+
     for (let i = 0; i < guides.length; i++) {
       const seg = guides[i];
       if (seg.length() < this.buildingMinLength) {
@@ -54,7 +55,34 @@ class World {
         i--;
       }
     }
-    return guides;
+
+    const supports = [];
+    for (let seg of guides) {
+      const len = seg.length() + this.spacing;
+      const buldingCount = Math.floor(
+        len / (this.buildingMinLength + this.spacing),
+      );
+      const buldingLength = len / buldingCount - this.spacing;
+
+      const dir = seg.directionVector();
+
+      let q1 = seg.p1;
+      let q2 = add(q1, scale(dir, buldingLength));
+      supports.push(new Segment(q1, q2));
+
+      for (let i = 2; i <= buldingCount; i++) {
+        q1 = add(q2, scale(dir, this.spacing));
+        q2 = add(q1, scale(dir, buldingLength));
+        supports.push(new Segment(q1, q2));
+      }
+    }
+
+    const bases = [];
+    for (const seg of supports) {
+      bases.push(new Envelope(seg, this.buildingWidth).poly);
+    }
+
+    return bases;
   }
 
   draw(ctx) {

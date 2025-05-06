@@ -85,6 +85,7 @@
             const world = new World(graph);
 
             const viewport = new Viewport(myCanvas);
+            viewport.zoom = 3;
             const graphEditor = new GraphEditor(viewport, graph);
 
             animate();
