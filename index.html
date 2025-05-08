@@ -88,11 +88,15 @@
             viewport.zoom = 3;
             const graphEditor = new GraphEditor(viewport, graph);
 
+            const oldGraphHash = graph.hash();
             animate();
 
             function animate() {
                 viewport.reset();
-                world.generate();
+                if (graph.hash() != oldGraphHash) {
+                    world.generate();
+                    oldGraphHash = graph.hash();
+                }
                 world.draw(ctx);
                 ctx.globalAlpha = 0.3;
                 graphEditor.display();
