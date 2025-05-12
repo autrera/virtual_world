@@ -88,7 +88,7 @@
             viewport.zoom = 3;
             const graphEditor = new GraphEditor(viewport, graph);
 
-            const oldGraphHash = graph.hash();
+            let oldGraphHash = graph.hash();
             animate();
 
             function animate() {
