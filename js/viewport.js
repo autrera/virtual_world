@@ -41,10 +41,7 @@ class Viewport {
   }
 
   #addEventListeners() {
-    this.canvas.addEventListener(
-      "mousewheel",
-      this.#handleMouseWheel.bind(this),
-    );
+    this.canvas.addEventListener("wheel", this.#handleMouseWheel.bind(this));
     this.canvas.addEventListener("mousedown", this.#handleMouseDown.bind(this));
     this.canvas.addEventListener("mousemove", this.#handleMouseMove.bind(this));
     this.canvas.addEventListener("mouseup", this.#handleMouseUp.bind(this));
@@ -79,7 +76,6 @@ class Viewport {
   }
 
   #handleMouseWheel(evt) {
-    console.log("HIHO");
     const dir = Math.sign(evt.deltaY);
     const step = 0.1;
     this.zoom += dir * step;
