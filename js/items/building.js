@@ -25,5 +25,9 @@ class Building {
     );
 
     this.base.draw(ctx, { fill: "white", stroke: "#AAA" });
+    for (const side of sides) {
+      side.draw(ctx, { fill: "white", stroke: "#AAA" });
+    }
+    cieling.draw(ctx, { fill: "white", stroke: "#AAA" });
   }
 }
