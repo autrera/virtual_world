@@ -1,5 +1,5 @@
 class Tree {
-  constructor(center, size, heightCoef = 0.3) {
+  constructor(center, size, heightCoef = 0.1) {
     this.center = center;
     this.size = size;
     this.heightCoef = heightCoef;
