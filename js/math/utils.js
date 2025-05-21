@@ -52,6 +52,10 @@ function normalize(p) {
   return scale(p, 1 / magnitude(p));
 }
 
+function perpendicular(p) {
+  return new Point(-p.y, p.x);
+}
+
 function magnitude(p) {
   return Math.hypot(p.x, p.y);
 }
