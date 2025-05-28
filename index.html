@@ -100,13 +100,19 @@
 
             const viewport = new Viewport(myCanvas);
             viewport.zoom = 5;
-            const graphEditor = new GraphEditor(viewport, graph);
-            const stopEditor = new StopEditor(viewport, world);
-            const crossingEditor = new CrossingEditor(viewport, world);
             const tools = {
-                graph: { button: graphBtn, editor: graphEditor },
-                stop: { button: stopBtn, editor: stopEditor },
-                crossing: { button: crossingBtn, editor: crossingEditor },
+                graph: {
+                    button: graphBtn,
+                    editor: new GraphEditor(viewport, graph),
+                },
+                stop: {
+                    button: stopBtn,
+                    editor: new StopEditor(viewport, world),
+                },
+                crossing: {
+                    button: crossingBtn,
+                    editor: new CrossingEditor(viewport, world),
+                },
             };
 
             let oldGraphHash = graph.hash();
@@ -131,7 +137,7 @@
             }
 
             function dispose() {
-                graphEditor.dispose();
+                tools["graph"].editor.dispose();
                 world.markings.length = 0;
             }
 
