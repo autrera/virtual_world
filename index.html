@@ -3,20 +3,19 @@
     <head>
         <title>World Editor</title>
         <link rel="stylesheet" href="styles.css" />
+        <meta charset="UTF-8" />
     </head>
     <body>
         <h1>World Editor</h1>
         <canvas id="myCanvas"></canvas>
         <div id="controls">
-            <button onclick="dispose()">Erase</button>
-            <button onclick="save()">Save</button>
+            <button onclick="dispose()">🗑️ Erase</button>
+            <button onclick="save()">💾 Save</button>
             &nbsp;
-            <button id="graphBtn" onclick="setMode('graph')">World</button>
-            <button id="stopBtn" onclick="setMode('stop')">Stop</button>
-            <button id="crossingBtn" onclick="setMode('crossing')">
-                Crossing
-            </button>
-            <button id="startBtn" onclick="setMode('start')">Start</button>
+            <button id="graphBtn" onclick="setMode('graph')">🌐</button>
+            <button id="stopBtn" onclick="setMode('stop')">🛑</button>
+            <button id="crossingBtn" onclick="setMode('crossing')">🚶</button>
+            <button id="startBtn" onclick="setMode('start')">🚙</button>
         </div>
 
         <script src="js/world.js"></script>
