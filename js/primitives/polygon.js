@@ -7,6 +7,10 @@ class Polygon {
     }
   }
 
+  static load(info) {
+    return new Polygon(info.points.map((i) => new Point(i.x, i.y)));
+  }
+
   static multiBreak(polys) {
     for (let i = 0; i < polys.length - 1; i++) {
       for (let j = i + 1; j < polys.length; j++) {
