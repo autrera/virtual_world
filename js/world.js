@@ -40,6 +40,8 @@ class World {
     world.roadBorders = info.roadBorders.map((b) => new Segment(b.p1, b.p2));
     world.buildings = info.buildings.map((e) => Building.load(e));
     world.trees = info.trees.map((e) => new Tree(e.center, info.treeSize));
+    world.laneGuides = info.laneGuides.map((e) => new Segment(e.p1, e.p2));
+    world.markings = info.markings.map((m) => Marking.load(m));
     return world;
   }
 
