@@ -111,8 +111,7 @@
                 : new World(new Graph());
             const graph = world.graph;
 
-            const viewport = new Viewport(myCanvas);
-            viewport.zoom = 3;
+            const viewport = new Viewport(myCanvas, world.zoom, world.offset);
             const tools = {
                 graph: {
                     button: graphBtn,
@@ -159,6 +158,9 @@
             }
 
             function save() {
+                world.zoom = viewport.zoom;
+                world.offset = viewport.offset;
+
                 const element = document.createElement("a");
                 element.setAttribute(
                     "href",
